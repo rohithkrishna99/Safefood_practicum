@@ -1,0 +1,334 @@
+
+======================================================================
+1. FEATURE IMPORTANCES
+======================================================================
+  total_posts            0.5139
+  growth_rate            0.1889
+  growth_acceleration    0.1039
+  platform_count         0.1002
+  rolling_avg            0.0932
+
+======================================================================
+2. FOOD CATEGORIES BY WEEK
+======================================================================
+          week_start_date  food_category  total_posts  platform_count
+2026-01-25 18:30:00+00:00          Bread            1               1
+2026-01-25 18:30:00+00:00   Chicken Dish            0               0
+2026-01-25 18:30:00+00:00        Dessert            0               0
+2026-01-25 18:30:00+00:00      Fast Food            0               0
+2026-01-25 18:30:00+00:00 Fast Food Meal            0               0
+2026-01-25 18:30:00+00:00 Fish And Chips            1               1
+2026-01-25 18:30:00+00:00    Indian Dish            2               2
+2026-01-25 18:30:00+00:00   Italian Dish            0               0
+2026-02-01 18:30:00+00:00          Bread            2               2
+2026-02-01 18:30:00+00:00   Chicken Dish            0               0
+2026-02-01 18:30:00+00:00        Dessert            1               1
+2026-02-01 18:30:00+00:00      Fast Food            1               1
+2026-02-01 18:30:00+00:00 Fast Food Meal            0               0
+2026-02-01 18:30:00+00:00 Fish And Chips            2               2
+2026-02-01 18:30:00+00:00    Indian Dish            1               1
+2026-02-01 18:30:00+00:00   Italian Dish            0               0
+2026-02-08 18:30:00+00:00          Bread            0               0
+2026-02-08 18:30:00+00:00   Chicken Dish            0               0
+2026-02-08 18:30:00+00:00        Dessert            5               2
+2026-02-08 18:30:00+00:00      Fast Food            0               0
+2026-02-08 18:30:00+00:00 Fast Food Meal            3               1
+2026-02-08 18:30:00+00:00 Fish And Chips            0               0
+2026-02-08 18:30:00+00:00    Indian Dish            0               0
+2026-02-08 18:30:00+00:00   Italian Dish            0               0
+2026-02-15 18:30:00+00:00          Bread            1               1
+2026-02-15 18:30:00+00:00   Chicken Dish            1               1
+2026-02-15 18:30:00+00:00        Dessert            1               1
+2026-02-15 18:30:00+00:00      Fast Food            4               1
+2026-02-15 18:30:00+00:00 Fast Food Meal            1               1
+2026-02-15 18:30:00+00:00 Fish And Chips            1               1
+2026-02-15 18:30:00+00:00    Indian Dish            0               0
+2026-02-15 18:30:00+00:00   Italian Dish            2               2
+2026-02-22 18:30:00+00:00          Bread            1               1
+2026-02-22 18:30:00+00:00   Chicken Dish            5               1
+2026-02-22 18:30:00+00:00        Dessert            1               1
+2026-02-22 18:30:00+00:00      Fast Food            1               1
+2026-02-22 18:30:00+00:00 Fast Food Meal            5               1
+2026-02-22 18:30:00+00:00 Fish And Chips            2               1
+2026-02-22 18:30:00+00:00    Indian Dish            9               2
+2026-02-22 18:30:00+00:00   Italian Dish            1               1
+2026-03-01 18:30:00+00:00          Bread            4               1
+2026-03-01 18:30:00+00:00   Chicken Dish            3               1
+2026-03-01 18:30:00+00:00        Dessert            5               2
+2026-03-01 18:30:00+00:00      Fast Food            3               2
+2026-03-01 18:30:00+00:00 Fast Food Meal            0               0
+2026-03-01 18:30:00+00:00 Fish And Chips            2               1
+2026-03-01 18:30:00+00:00    Indian Dish            0               0
+2026-03-01 18:30:00+00:00   Italian Dish            0               0
+2026-03-08 18:30:00+00:00          Bread            4               1
+2026-03-08 18:30:00+00:00   Chicken Dish            4               2
+2026-03-08 18:30:00+00:00        Dessert            9               2
+2026-03-08 18:30:00+00:00      Fast Food            1               1
+2026-03-08 18:30:00+00:00 Fast Food Meal            3               1
+2026-03-08 18:30:00+00:00 Fish And Chips            4               2
+2026-03-08 18:30:00+00:00    Indian Dish            0               0
+2026-03-08 18:30:00+00:00   Italian Dish            2               2
+2026-03-15 18:30:00+00:00          Bread            4               2
+2026-03-15 18:30:00+00:00   Chicken Dish            4               1
+2026-03-15 18:30:00+00:00        Dessert            4               1
+2026-03-15 18:30:00+00:00      Fast Food            3               2
+2026-03-15 18:30:00+00:00 Fast Food Meal            3               1
+2026-03-15 18:30:00+00:00 Fish And Chips            4               1
+2026-03-15 18:30:00+00:00    Indian Dish            2               2
+2026-03-15 18:30:00+00:00   Italian Dish            5               1
+2026-03-22 18:30:00+00:00          Bread            5               2
+2026-03-22 18:30:00+00:00   Chicken Dish            7               1
+2026-03-22 18:30:00+00:00        Dessert            3               1
+2026-03-22 18:30:00+00:00      Fast Food            6               2
+2026-03-22 18:30:00+00:00 Fast Food Meal            2               1
+2026-03-22 18:30:00+00:00 Fish And Chips            3               1
+2026-03-22 18:30:00+00:00    Indian Dish            1               1
+2026-03-22 18:30:00+00:00   Italian Dish            3               1
+2026-03-29 18:30:00+00:00          Bread            0               0
+2026-03-29 18:30:00+00:00   Chicken Dish            4               1
+2026-03-29 18:30:00+00:00        Dessert            1               1
+2026-03-29 18:30:00+00:00      Fast Food            1               1
+2026-03-29 18:30:00+00:00 Fast Food Meal            2               1
+2026-03-29 18:30:00+00:00 Fish And Chips            4               1
+2026-03-29 18:30:00+00:00    Indian Dish            7               2
+2026-03-29 18:30:00+00:00   Italian Dish            0               0
+2026-04-05 18:30:00+00:00          Bread            3               1
+2026-04-05 18:30:00+00:00   Chicken Dish            1               1
+2026-04-05 18:30:00+00:00        Dessert            0               0
+2026-04-05 18:30:00+00:00      Fast Food            0               0
+2026-04-05 18:30:00+00:00 Fast Food Meal            1               1
+2026-04-05 18:30:00+00:00 Fish And Chips            4               1
+2026-04-05 18:30:00+00:00    Indian Dish            1               1
+2026-04-05 18:30:00+00:00   Italian Dish            2               2
+2026-04-12 18:30:00+00:00          Bread            1               1
+2026-04-12 18:30:00+00:00   Chicken Dish            3               1
+2026-04-12 18:30:00+00:00        Dessert            0               0
+2026-04-12 18:30:00+00:00      Fast Food            1               1
+2026-04-12 18:30:00+00:00 Fast Food Meal            2               1
+2026-04-12 18:30:00+00:00 Fish And Chips            4               1
+2026-04-12 18:30:00+00:00    Indian Dish            1               1
+2026-04-12 18:30:00+00:00   Italian Dish            1               1
+2026-04-19 18:30:00+00:00          Bread            2               1
+2026-04-19 18:30:00+00:00   Chicken Dish            5               1
+2026-04-19 18:30:00+00:00        Dessert            1               1
+2026-04-19 18:30:00+00:00      Fast Food            2               2
+2026-04-19 18:30:00+00:00 Fast Food Meal            5               1
+2026-04-19 18:30:00+00:00 Fish And Chips            0               0
+2026-04-19 18:30:00+00:00    Indian Dish            0               0
+2026-04-19 18:30:00+00:00   Italian Dish            0               0
+2026-04-26 18:30:00+00:00          Bread            2               1
+2026-04-26 18:30:00+00:00   Chicken Dish            3               1
+2026-04-26 18:30:00+00:00        Dessert            1               1
+2026-04-26 18:30:00+00:00      Fast Food            1               1
+2026-04-26 18:30:00+00:00 Fast Food Meal            2               1
+2026-04-26 18:30:00+00:00 Fish And Chips            1               1
+2026-04-26 18:30:00+00:00    Indian Dish            3               2
+2026-04-26 18:30:00+00:00   Italian Dish            1               1
+2026-05-03 18:30:00+00:00          Bread            0               0
+2026-05-03 18:30:00+00:00   Chicken Dish            2               1
+2026-05-03 18:30:00+00:00        Dessert            2               1
+2026-05-03 18:30:00+00:00      Fast Food            0               0
+2026-05-03 18:30:00+00:00 Fast Food Meal            4               1
+2026-05-03 18:30:00+00:00 Fish And Chips            3               1
+2026-05-03 18:30:00+00:00    Indian Dish            0               0
+2026-05-03 18:30:00+00:00   Italian Dish            1               1
+2026-05-10 18:30:00+00:00          Bread            1               1
+2026-05-10 18:30:00+00:00   Chicken Dish            1               1
+2026-05-10 18:30:00+00:00        Dessert            1               1
+2026-05-10 18:30:00+00:00      Fast Food            3               2
+2026-05-10 18:30:00+00:00 Fast Food Meal            2               1
+2026-05-10 18:30:00+00:00 Fish And Chips            2               1
+2026-05-10 18:30:00+00:00    Indian Dish            0               0
+2026-05-10 18:30:00+00:00   Italian Dish            0               0
+2026-05-17 18:30:00+00:00          Bread            1               1
+2026-05-17 18:30:00+00:00   Chicken Dish            4               1
+2026-05-17 18:30:00+00:00        Dessert            2               1
+2026-05-17 18:30:00+00:00      Fast Food            0               0
+2026-05-17 18:30:00+00:00 Fast Food Meal            0               0
+2026-05-17 18:30:00+00:00 Fish And Chips            2               2
+2026-05-17 18:30:00+00:00    Indian Dish            5               2
+2026-05-17 18:30:00+00:00   Italian Dish            2               2
+2026-05-24 18:30:00+00:00          Bread            0               0
+2026-05-24 18:30:00+00:00   Chicken Dish            0               0
+2026-05-24 18:30:00+00:00        Dessert            1               1
+2026-05-24 18:30:00+00:00      Fast Food            0               0
+2026-05-24 18:30:00+00:00 Fast Food Meal            2               1
+2026-05-24 18:30:00+00:00 Fish And Chips            1               1
+2026-05-24 18:30:00+00:00    Indian Dish            2               1
+2026-05-24 18:30:00+00:00   Italian Dish            4               2
+2026-05-31 18:30:00+00:00          Bread            0               0
+2026-05-31 18:30:00+00:00   Chicken Dish            1               1
+2026-05-31 18:30:00+00:00        Dessert            0               0
+2026-05-31 18:30:00+00:00      Fast Food            1               1
+2026-05-31 18:30:00+00:00 Fast Food Meal            2               1
+2026-05-31 18:30:00+00:00 Fish And Chips            0               0
+2026-05-31 18:30:00+00:00    Indian Dish            8               2
+2026-05-31 18:30:00+00:00   Italian Dish            0               0
+2026-06-07 18:30:00+00:00          Bread            1               1
+2026-06-07 18:30:00+00:00   Chicken Dish            1               1
+2026-06-07 18:30:00+00:00        Dessert            0               0
+2026-06-07 18:30:00+00:00      Fast Food            0               0
+2026-06-07 18:30:00+00:00 Fast Food Meal            3               1
+2026-06-07 18:30:00+00:00 Fish And Chips            2               1
+2026-06-07 18:30:00+00:00    Indian Dish            7               1
+2026-06-07 18:30:00+00:00   Italian Dish            1               1
+2026-06-14 18:30:00+00:00          Bread            1               1
+2026-06-14 18:30:00+00:00   Chicken Dish            0               0
+2026-06-14 18:30:00+00:00        Dessert            1               1
+2026-06-14 18:30:00+00:00      Fast Food            1               1
+2026-06-14 18:30:00+00:00 Fast Food Meal            0               0
+2026-06-14 18:30:00+00:00 Fish And Chips            2               1
+2026-06-14 18:30:00+00:00    Indian Dish            6               1
+2026-06-14 18:30:00+00:00   Italian Dish            2               2
+2026-06-21 18:30:00+00:00          Bread            0               0
+2026-06-21 18:30:00+00:00   Chicken Dish            0               0
+2026-06-21 18:30:00+00:00        Dessert            0               0
+2026-06-21 18:30:00+00:00      Fast Food            0               0
+2026-06-21 18:30:00+00:00 Fast Food Meal            2               1
+2026-06-21 18:30:00+00:00 Fish And Chips            1               1
+2026-06-21 18:30:00+00:00    Indian Dish            5               2
+2026-06-21 18:30:00+00:00   Italian Dish            0               0
+2026-06-28 18:30:00+00:00          Bread            3               1
+2026-06-28 18:30:00+00:00   Chicken Dish            0               0
+2026-06-28 18:30:00+00:00        Dessert            1               1
+2026-06-28 18:30:00+00:00      Fast Food            3               1
+2026-06-28 18:30:00+00:00 Fast Food Meal            4               1
+2026-06-28 18:30:00+00:00 Fish And Chips            3               2
+2026-06-28 18:30:00+00:00    Indian Dish            5               2
+2026-06-28 18:30:00+00:00   Italian Dish            0               0
+2026-07-05 18:30:00+00:00          Bread            0               0
+2026-07-05 18:30:00+00:00   Chicken Dish            1               1
+2026-07-05 18:30:00+00:00        Dessert            1               1
+2026-07-05 18:30:00+00:00      Fast Food            0               0
+2026-07-05 18:30:00+00:00 Fast Food Meal            3               1
+2026-07-05 18:30:00+00:00 Fish And Chips            5               2
+2026-07-05 18:30:00+00:00    Indian Dish            6               1
+2026-07-05 18:30:00+00:00   Italian Dish            2               1
+2026-07-12 18:30:00+00:00          Bread            2               1
+2026-07-12 18:30:00+00:00   Chicken Dish            2               1
+2026-07-12 18:30:00+00:00        Dessert            1               1
+2026-07-12 18:30:00+00:00      Fast Food            6               2
+2026-07-12 18:30:00+00:00 Fast Food Meal            0               0
+2026-07-12 18:30:00+00:00 Fish And Chips            2               1
+2026-07-12 18:30:00+00:00    Indian Dish           12               2
+2026-07-12 18:30:00+00:00   Italian Dish            1               1
+2026-07-19 18:30:00+00:00          Bread            0               0
+2026-07-19 18:30:00+00:00   Chicken Dish            3               1
+2026-07-19 18:30:00+00:00        Dessert            0               0
+2026-07-19 18:30:00+00:00      Fast Food            3               1
+2026-07-19 18:30:00+00:00 Fast Food Meal            2               1
+2026-07-19 18:30:00+00:00 Fish And Chips            3               1
+2026-07-19 18:30:00+00:00    Indian Dish            3               1
+2026-07-19 18:30:00+00:00   Italian Dish            1               1
+
+======================================================================
+3. CLASSIFICATION REPORT (hold-out split)
+======================================================================
+  Test set size: 75 rows (14 trending / 61 not trending)
+              precision    recall  f1-score   support
+
+not_trending       0.91      0.69      0.79        61
+    trending       0.34      0.71      0.47        14
+
+    accuracy                           0.69        75
+   macro avg       0.63      0.70      0.63        75
+weighted avg       0.81      0.69      0.73        75
+
+
+======================================================================
+4. CONSOLE REPORT — TRENDING NOW / WATCH LIST / DATA COVERAGE
+======================================================================
+Week ending: 2026-07-20
+
+TRENDING NOW (1 topics)
+  Pizza | posts=1 growth=+0.0% platforms=1 score=0.673
+
+WATCH LIST (1 topics)
+  Irish Spice Bag                     score=0.32  growth=-50.0%
+
+DATA COVERAGE
+  YouTube - Comments    387 posts
+  YouTube                32 posts
+  Total (English)       419 posts
+  Weeks in database   : 52
+
+======================================================================
+5. TABLE ROW COUNTS
+======================================================================
+  raw_posts            2191
+  posts_with_topics    1009
+  weekly_snapshots     208
+  trend_predictions    10
+
+======================================================================
+6. POSTS PER PLATFORM
+======================================================================
+          platform    n
+YouTube - Comments 1829
+           YouTube  362
+
+======================================================================
+7. WEEKS OF HISTORY & DATE RANGE
+======================================================================
+               first_week                 last_week  n_weeks
+2026-01-18 18:30:00+00:00 2026-07-19 18:30:00+00:00       27
+
+======================================================================
+8. TOPIC DISCOVERY FIGURES
+======================================================================
+Topics found per week:
+week_start_date
+2026-01-26    1
+2026-02-02    3
+2026-02-09    1
+2026-02-16    4
+2026-02-23    4
+2026-03-02    3
+2026-03-09    4
+2026-03-16    4
+2026-03-23    4
+2026-03-30    2
+2026-04-06    2
+2026-04-13    3
+2026-04-20    3
+2026-04-27    4
+2026-05-04    2
+2026-05-11    3
+2026-05-18    3
+2026-05-25    2
+2026-06-01    1
+2026-06-08    2
+2026-06-15    4
+2026-06-29    3
+2026-07-06    2
+2026-07-13    4
+2026-07-20    2
+
+Outlier rows (topic_id == -1) in current all_texts_df: 266
+  Note: pre- vs post-reassignment outlier counts aren't retained separately after cell 27 runs — reduce_outliers overwrites `topics` in place. To capture both, re-run cell 27 and print len([t for t in topics if t==-1]) immediately before and after each reduce_outliers call.
+
+Topics dropped by is_food gate: 22 of 26
+
+Example food_name / food_category pairs:
+    topic_label food_category
+Irish Spice Bag     Fast Food
+     Soda Bread         Bread
+         Yogurt       Dessert
+          Pizza  Italian Dish
+
+======================================================================
+CLARIFICATION — same category trending at every threshold?
+======================================================================
+  threshold 0.2: []
+  threshold 0.3: []
+  threshold 0.4: []
+  threshold 0.5: []
+
+======================================================================
+OPTIONAL — attrition through preparation stages
+======================================================================
+  Raw posts collected (in DB):        2191
+  After language filter / integration: 419  (all_texts_df as currently held in memory)
+  After 5-word minimum filter:         1553 of 1751 preprocessed texts
+  Final modelling rows (features+target complete): 300
+  Note: dedup counts are printed inline during cell 22/23 (e.g. 'YouTube video dedup: X -> Y') — pull those from the run's stdout/logs if you need the raw->deduped step specifically; they aren't stored in the DB.

@@ -1,0 +1,80 @@
+24 weeks available -> 6 rounds
+
+  Round 1: train 2026-01-26 -> 2026-03-30  (10 wks) | test 2026-04-20 -> 2026-04-27
+  Round 2: train 2026-01-26 -> 2026-04-13  (12 wks) | test 2026-05-04 -> 2026-05-11
+  Round 3: train 2026-01-26 -> 2026-04-27  (14 wks) | test 2026-05-18 -> 2026-05-25
+  Round 4: train 2026-01-26 -> 2026-05-11  (16 wks) | test 2026-06-01 -> 2026-06-08
+  Round 5: train 2026-01-26 -> 2026-05-25  (18 wks) | test 2026-06-15 -> 2026-06-22
+  Round 6: train 2026-01-26 -> 2026-06-08  (20 wks) | test 2026-06-29 -> 2026-07-06
+
+==============================================================================
+PER-ROUND SCORES
+==============================================================================
+
+LogisticRegression
+ round  n_train  n_test  test_positives  TP  FN  FP  TN   recall  precision       f1      auc
+     1       86      20               6   5   1   9   5 0.833333   0.357143 0.500000 0.827381
+     2      109      19               9   6   3   6   4 0.666667   0.500000 0.571429 0.600000
+     3      129      30               7   6   1   6  17 0.857143   0.500000 0.631579 0.763975
+     4      148      32               4   3   1   7  21 0.750000   0.300000 0.428571 0.803571
+     5      178      33               3   1   2  16  14 0.333333   0.058824 0.100000 0.577778
+     6      210      31              12   8   4   6  13 0.666667   0.571429 0.615385 0.732456
+
+RandomForest
+ round  n_train  n_test  test_positives  TP  FN  FP  TN   recall  precision       f1      auc
+     1       86      20               6   5   1   8   6 0.833333   0.384615 0.526316 0.565476
+     2      109      19               9   5   4   3   7 0.555556   0.625000 0.588235 0.600000
+     3      129      30               7   6   1   3  20 0.857143   0.666667 0.750000 0.913043
+     4      148      32               4   2   2   6  22 0.500000   0.250000 0.333333 0.794643
+     5      178      33               3   2   1  10  20 0.666667   0.166667 0.266667 0.622222
+     6      210      31              12   8   4   6  13 0.666667   0.571429 0.615385 0.776316
+
+XGBoost
+ round  n_train  n_test  test_positives  TP  FN  FP  TN   recall  precision       f1      auc
+     1       86      20               6   4   2   7   7 0.666667   0.363636 0.470588 0.553571
+     2      109      19               9   3   6   3   7 0.333333   0.500000 0.400000 0.555556
+     3      129      30               7   4   3   5  18 0.571429   0.444444 0.500000 0.785714
+     4      148      32               4   2   2   6  22 0.500000   0.250000 0.333333 0.642857
+     5      178      33               3   1   2  11  19 0.333333   0.083333 0.133333 0.533333
+     6      210      31              12   6   6   4  15 0.500000   0.600000 0.545455 0.750000
+
+==============================================================================
+AVERAGED SCORECARD  (mean +/- std across rounds)
+==============================================================================
+                    recall_mean  recall_std  precision_mean  precision_std  f1_mean  f1_std  auc_mean  auc_std  total_TP  total_FN  total_FP  total_TN
+model                                                                                                                                                 
+LogisticRegression        0.685       0.190           0.381          0.187    0.474   0.198     0.718    0.105        29        12        50        74
+RandomForest              0.680       0.144           0.444          0.208    0.513   0.182     0.712    0.137        28        13        36        88
+XGBoost                   0.484       0.132           0.374          0.185    0.397   0.149     0.637    0.109        20        21        36        88
+
+Combined confusion matrices (all rounds summed):
+
+  LogisticRegression
+                   predicted_no   predicted_trend
+    actual_no                74                50
+    actual_trend             12                29   <- missed trends: 12
+
+  RandomForest
+                   predicted_no   predicted_trend
+    actual_no                88                36
+    actual_trend             13                28   <- missed trends: 13
+
+  XGBoost
+                   predicted_no   predicted_trend
+    actual_no                88                36
+    actual_trend             21                20   <- missed trends: 21
+
+==============================================================================
+Best mean AUC: 0.718
+Within 0.03 of it: ['LogisticRegression', 'RandomForest']
+CHOSEN (simplest among the tied): LogisticRegression
+==============================================================================
+
+Final model: LogisticRegression trained on all 274 rows (24 weeks). Not scored — see the scorecard above.
+
+Coefficients (positive = pushes toward 'will trend'):
+growth_rate         0.566
+platform_count      0.003
+ratio_to_peak      -0.094
+sustained_growth   -0.193
+rolling_avg        -1.453

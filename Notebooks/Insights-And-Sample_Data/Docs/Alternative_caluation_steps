@@ -1,0 +1,230 @@
+No problem — let's rebuild this cleanly with just the 3 signals you actually have: **uploads, Google Trends, comments**. I'll go from scratch so it's self-contained.
+
+## The 3 signals and their weights
+
+| Signal | Symbol | Weight | Source | What it captures |
+|---|---|---|---|---|
+| YouTube video uploads (count) | S1 | 3 | YouTube data | Creator supply — are people making content on this topic |
+| Google Trends index | S2 | 2 | Google Trends | Consumer demand/search interest |
+| YouTube comments (count) | S3 | 1 | YouTube data | Audience conversation/engagement volume |
+
+Weights sum to 3+2+1 = **6** (this denominator changes from before since we dropped a signal).
+
+## Step 1: Collect raw weekly data per topic
+
+Example topics: A = Korean Corn Dogs, B = Matcha Drinks, C = Birria Tacos
+
+**Week 4 (2 weeks ago):**
+
+| Topic | Uploads (S1) | Trends (S2) | Comments (S3) |
+|---|---|---|---|
+| A | 40 | 35 | 300 |
+| B | 55 | 60 | 900 |
+| C | 130 | 45 | 1,600 |
+
+**Week 6 (current week):**
+
+| Topic | Uploads (S1) | Trends (S2) | Comments (S3) |
+|---|---|---|---|
+| A | 120 | 70 | 900 |
+| B | 80 | 85 | 1,200 |
+| C | 150 | 40 | 500 |
+
+## Step 2: Normalize each signal within its week
+
+Why: uploads, trends, and comments are on totally different scales (tens vs hundreds vs thousands). Normalizing makes them comparable.
+
+Formula:
+```
+Norm(X) = (X − Min_that_week) / (Max_that_week − Min_that_week)
+```
+
+**Week 6 normalization:**
+
+*S1 (uploads):* Min=80, Max=150
+- A: (120−80)/70 = **0.571**
+- B: (80−80)/70 = **0**
+- C: (150−80)/70 = **1.0**
+
+*S2 (trends):* Min=40, Max=85
+- A: (70−40)/45 = **0.667**
+- B: (85−40)/45 = **1.0**
+- C: (40−40)/45 = **0**
+
+*S3 (comments):* Min=500, Max=1200
+- A: (900−500)/700 = **0.571**
+- B: (1200−500)/700 = **1.0**
+- C: (500−500)/700 = **0**
+
+**Week 4 normalization (same method):**
+
+*S1:* Min=40, Max=130 → A=0, B=**0.167**, C=**1.0**
+*S2:* Min=35, Max=60 → A=0, B=**1.0**, C=**0.4**
+*S3:* Min=300, Max=1600 → A=0, B=**0.462**, C=**1.0**
+
+## Step 3: Calculate SMPR (SocialMediaPresenceRate) per week
+
+Formula:SMPR =  (w1×x1 + w2×x2 + w3×x3) / (w1+w2+w3)
+```
+SMPR = (3×S1 + 2×S2 + 1×S3) / 6
+```
+
+**Week 6 SMPR:**
+- **A:** (3×0.571 + 2×0.667 + 1×0.571) / 6 = (1.713+1.334+0.571)/6 = 3.618/6 = **0.603**
+- **B:** (3×0 + 2×1.0 + 1×1.0) / 6 = (0+2.0+1.0)/6 = 3.0/6 = **0.500**
+- **C:** (3×1.0 + 2×0 + 1×0) / 6 = 3.0/6 = **0.500**
+
+**Week 4 SMPR:**
+- **A:** (3×0 + 2×0 + 1×0)/6 = **0.000**
+- **B:** (3×0.167 + 2×1.0 + 1×0.462)/6 = (0.501+2.0+0.462)/6 = 2.963/6 = **0.494**
+- **C:** (3×1.0 + 2×0.4 + 1×1.0)/6 = (3.0+0.8+1.0)/6 = 4.8/6 = **0.800**
+
+## Step 4: Momentum — 2-week rise in SMPR
+
+Formula (with small floor to avoid divide-by-zero):
+```
+Momentum = (SMPR_current − SMPR_2wk_ago) / (SMPR_2wk_ago + 0.01)
+```
+
+- **A:** (0.603 − 0.000) / (0.000+0.01) = 0.603/0.01 = **60.3** (huge — started from zero, treat with caution, see note below)
+- **B:** (0.500 − 0.494) / (0.494+0.01) = 0.006/0.504 = **0.012** (basically flat)
+- **C:** (0.500 − 0.800) / (0.800+0.01) = -0.300/0.810 = **-0.370** (declining)
+
+## Step 5: Normalize Momentum across topics
+
+Same min-max method, applied to the momentum values themselves:
+Min = -0.370, Max = 60.3
+
+- A: (60.3 − (-0.370)) / 60.67 = **1.0**
+- B: (0.012 − (-0.370)) / 60.67 = **0.0063**
+- C: (-0.370 − (-0.370)) / 60.67 = **0**
+
+## Step 6: Final Trend Score
+
+Formula:
+```
+TrendScore = (0.6 × SMPR_current) + (0.4 × Norm_Momentum)
+```
+
+- **A:** 0.6×0.603 + 0.4×1.0 = 0.362 + 0.400 = **0.762**
+- **B:** 0.6×0.500 + 0.4×0.0063 = 0.300 + 0.003 = **0.303**
+- **C:** 0.6×0.500 + 0.4×0 = 0.300 + 0 = **0.300**
+
+## Final ranking (predicted trend for next 2 weeks)
+
+| Rank | Topic | Trend Score |
+|---|---|---|
+| 1 | **Korean Corn Dogs (A)** | 0.762 |
+| 2 | Matcha Drinks (B) | 0.303 |
+| 3 | Birria Tacos (C) | 0.300 |
+
+A wins — strong current presence *and* the sharpest rise. C was the biggest 2 weeks ago but is now decaying, so it correctly drops despite having the most raw comments/uploads historically.
+
+## Important caveat you should build into the system
+
+When a topic goes from **SMPR ≈ 0 to something real**, the momentum formula produces a huge, scale-breaking number (60.3 here) purely because of the tiny denominator — not because the growth is necessarily more meaningful than B or C's. Two ways to handle this:
+
+1. **Cap momentum** at some max value (e.g., clip anything above 5 or 10) before normalizing, so one topic can't single-handedly stretch the whole scale.
+2. **Use absolute SMPR difference instead of % change** when the base is very low: `Momentum = SMPR_current − SMPR_2wk_ago` (no denominator at all). Simpler, avoids the explosion, but loses the "relative growth" nuance for already-established topics.
+
+I'd suggest **option 1 (capping)** — keeps the relative-growth idea but prevents one near-zero-start topic from dominating the rankings on a technicality.
+
+Want this turned into a working spreadsheet or Python script so you can just feed in your real 6 months of weekly data and get these tables generated automatically?
+
+
+----------------------------
+
+consider here from step 6:
+final_features = {
+    # Raw signal (baseline, stable)
+    "total_posts": ...,
+    "growth_rate": ...,          # raw posts % change (1st derivative, raw)
+
+    # SMPR (blended signal: uploads+trends+comments)
+    "smpr": ...,
+    "smpr_momentum": ...,        # SMPR % change (1st derivative, blended)
+    "smpr_acceleration": ...,    # change in smpr_momentum (2nd derivative, blended)
+    "normalized_momentum": ...,  # smpr_momentum scaled 0-1 across topics (final-stage only)
+
+    # Trend shape / consistency (existing schema fields, unchanged)
+    "trend_3wk": ...,
+    "rolling_avg": ...,
+    "peak_so_far": ...,
+    "ratio_to_peak": ...,
+    "weeks_since_peak": ...,
+    "sustained_growth": ...,
+    "posts_lag_1": ...,
+    "posts_lag_2": ...,
+
+    # Target
+    "will_trend": ...,  # unknown for current week — this is what gets predicted
+}
+
+reduced set:
+final_features = {
+    "total_posts": ...,           # raw current value, baseline context
+
+    "smpr": ...,                  # current blended strength
+    "smpr_acceleration": ...,     # is blended growth speeding up/slowing down
+    "normalized_momentum": ...,   # direction + magnitude, comparable across topics
+
+    "trend_3wk": ...,             # raw-posts slope (different base than smpr, kept)
+    "rolling_avg": ...,           # stability baseline
+    "peak_so_far": ...,           # historical ceiling
+    "ratio_to_peak": ...,         # distance from ceiling
+    "weeks_since_peak": ...,      # recency of peak
+    "sustained_growth": ...,      # consistency streak
+
+    "will_trend": ...,            # target
+}
+
+Field	Formula
+smpr_acceleration = raw_momentum(W3) − raw_momentum(W2)
+growth_rate	(total_posts − prev_posts) / prev_posts — raw, stable baseline
+trend_3wk	(posts_W3 − posts_W1) / 2 — smoothed 3-point slope
+rolling_avg	(W1+W2+W3)/3 — baseline stability
+peak_so_far	MAX(posts so far)
+ratio_to_peak	posts_this_week / peak_so_far
+weeks_since_peak	how long since the peak happened
+sustained_growth	consecutive weeks of positive growth
+posts_lag_1, posts_lag_2	raw values from 1 and 2 weeks ago
+
+total_posts = raw count for that topic, that week (direct input, no calculation)
+growth_rate = (total_posts − prev_posts) / prev_posts (where prev_posts = total_posts from 1 week ago)
+trend_3wk = (total_posts[this_week] − total_posts[2_weeks_ago]) / 2
+rolling_avg = (total_posts[W1] + total_posts[W2] + total_posts[W3]) / 3 (where W1, W2, W3 = the last 3 consecutive weeks (oldest to newest))
+peak_so_far = MAX(total_posts for all weeks up to and including this week)
+ratio_to_peak = total_posts[this_week] / peak_so_far
+weeks_since_peak = current_week_index − week_index_where_peak_occurred
+
+if total_posts[this_week] > total_posts[prev_week]:
+    sustained_growth = sustained_growth[prev_week] + 1
+else:
+    sustained_growth = 0
+
+posts_lag_1 = total_posts from 1 week ago
+posts_lag_2 = total_posts from 2 weeks ago
+
+Step 7 — Model training
+Use XGBoost or LightGBM (handles feature interactions, gives feature importance)
+Time-based split — train on earlier weeks, test on most recent weeks (never random split, that leaks future data)
+Output: P(will_trend) — a probability per topic per week
+Step 8 — Prediction
+
+Take the current week's row (where will_trend is unknown), run it through the trained model → get a ranked probability list of topics likely to trend in the next 2 weeks.
+
+
+
+
+Algorithms:
+Both XGBoost (eXtreme Gradient Boosting) and LightGBM (Light Gradient Boosting Machine) are implementations of the same core idea: build many small decision trees, one after another, where each new tree tries to fix the mistakes of the previous ones.
+
+How gradient boosting actually works (conceptually)
+
+Think of it like a chain of specialists, not one genius:
+
+Tree 1 looks at all your topics' data (SMPR, momentum, ratio_to_peak, etc.) and makes a rough first guess at will_trend for each row. It'll get plenty wrong.
+Tree 2 doesn't start over — it specifically looks at where Tree 1 was wrong and tries to correct those errors.
+Tree 3 corrects what Tree 1 + Tree 2 still got wrong.
+This repeats for hundreds of trees, each one nudging the overall prediction a little closer to correct.
+Final prediction = combined output of all trees added together (weighted).

@@ -1,0 +1,76 @@
+23 weeks available -> 5 rounds
+
+  Round 1: train 2026-02-02 -> 2026-04-06  (10 wks) | test 2026-04-27 -> 2026-05-04
+  Round 2: train 2026-02-02 -> 2026-04-20  (12 wks) | test 2026-05-11 -> 2026-05-18
+  Round 3: train 2026-02-02 -> 2026-05-04  (14 wks) | test 2026-05-25 -> 2026-06-01
+  Round 4: train 2026-02-02 -> 2026-05-18  (16 wks) | test 2026-06-08 -> 2026-06-15
+  Round 5: train 2026-02-02 -> 2026-06-01  (18 wks) | test 2026-06-22 -> 2026-06-29
+
+==============================================================================
+PER-ROUND SCORES
+==============================================================================
+
+LogisticRegression
+ round  n_train  n_test  test_positives  TP  FN  FP  TN   recall  precision       f1      auc
+     1       97      19               6   3   3   2  11 0.500000   0.600000 0.545455 0.756410
+     2      118      24              13   6   7   5   6 0.461538   0.545455 0.500000 0.615385
+     3      137      32               5   5   0  10  17 1.000000   0.333333 0.500000 0.766667
+     4      161      33               5   2   3   7  21 0.400000   0.222222 0.285714 0.714286
+     5      193      32               5   3   2   5  22 0.600000   0.375000 0.461538 0.714815
+
+RandomForest
+ round  n_train  n_test  test_positives  TP  FN  FP  TN   recall  precision       f1      auc
+     1       97      19               6   3   3   2  11 0.500000   0.600000 0.545455 0.769231
+     2      118      24              13   7   6   4   7 0.538462   0.636364 0.583333 0.601399
+     3      137      32               5   4   1   8  19 0.800000   0.333333 0.470588 0.848148
+     4      161      33               5   2   3   6  22 0.400000   0.250000 0.307692 0.692857
+     5      193      32               5   2   3   7  20 0.400000   0.222222 0.285714 0.685185
+
+XGBoost
+ round  n_train  n_test  test_positives  TP  FN  FP  TN   recall  precision       f1      auc
+     1       97      19               6   1   5   1  12 0.166667   0.500000 0.250000 0.782051
+     2      118      24              13   4   9   1  10 0.307692   0.800000 0.444444 0.664336
+     3      137      32               5   4   1   6  21 0.800000   0.400000 0.533333 0.766667
+     4      161      33               5   1   4   5  23 0.200000   0.166667 0.181818 0.507143
+     5      193      32               5   2   3   5  22 0.400000   0.285714 0.333333 0.618519
+
+==============================================================================
+AVERAGED SCORECARD  (mean +/- std across rounds)
+==============================================================================
+                    recall_mean  recall_std  precision_mean  precision_std  f1_mean  f1_std  auc_mean  auc_std  total_TP  total_FN  total_FP  total_TN
+model                                                                                                                                                 
+LogisticRegression        0.592       0.239           0.415          0.155    0.459   0.101     0.714    0.060        19        15        29        77
+RandomForest              0.528       0.164           0.408          0.196    0.439   0.136     0.719    0.093        18        16        27        79
+XGBoost                   0.375       0.255           0.430          0.241    0.349   0.142     0.668    0.113        12        22        18        88
+
+Combined confusion matrices (all rounds summed):
+
+  LogisticRegression
+                   predicted_no   predicted_trend
+    actual_no                77                29
+    actual_trend             15                19   <- missed trends: 15
+
+  RandomForest
+                   predicted_no   predicted_trend
+    actual_no                79                27
+    actual_trend             16                18   <- missed trends: 16
+
+  XGBoost
+                   predicted_no   predicted_trend
+    actual_no                88                18
+    actual_trend             22                12   <- missed trends: 22
+
+==============================================================================
+Best mean AUC: 0.719
+Within 0.03 of it: ['LogisticRegression', 'RandomForest']
+CHOSEN (simplest among the tied): LogisticRegression
+==============================================================================
+
+Final model: LogisticRegression trained on all 273 rows (23 weeks). Not scored — see the scorecard above.
+
+Coefficients (positive = pushes toward 'will trend'):
+platform_count      0.245
+growth_rate         0.221
+ratio_to_peak       0.218
+sustained_growth   -0.032
+rolling_avg        -1.452

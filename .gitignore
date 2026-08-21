@@ -1,0 +1,10 @@
+# Added by code-review-graph
+.code-review-graph/
+.opencode.json
+AGENTS.md
+safefoodvenv/
+ras_env/
+ras_env312/
+.env
+__pycache__/
+.opencode/
